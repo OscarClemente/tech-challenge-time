@@ -1,0 +1,14 @@
+version: '3.1'
+services:
+  postgres:
+    image: 'postgres:latest'
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=dbpass
+      - POSTGRES_DB=timerdb
+  timers-backend:
+    image: 'hassiodev/backend-tech-challenge-time:latest'
+    depends_on:
+      - "postgres"
+    ports:
+      - 8080:8080
